@@ -23,6 +23,7 @@ trd = rand(sum(s>=0),iter) <= p_troedel;
 phase = floor(iter - 1/(t_gruen + t_rot));
 rest = mod(iter - 1,(t_gruen + t_rot));
 
+% Berechnungen für die Grünphase (Geschwindigkeit und Lage)
 for i=1:t_gruen
     
     % Nächste Spalte initialisieren
@@ -42,7 +43,7 @@ for i=1:t_gruen
     ind(:,i) = mod(ind(:,i-1) + val(:,i) - 1,laenge)+1;
 end
 
-%Rot_Phase
+% Berechnungen für die Rot_Phase
 for i=1:t_rot
     
     L = min(mod(laenge + ampel - ind(:,i) - 1,laenge));
