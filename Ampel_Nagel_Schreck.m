@@ -50,11 +50,12 @@ for i=2:iter
     else    
         fprintf('Rot\n');
 
-        % L ist der Index des Fahrzeugs mit dem minimalen Abstand zur Ampel
-        [~,L]= min(mod(laenge + ampel - ind(:,i)' - 1,laenge));
         % Nächste Spalte initialisieren
         val(:,i) = val(:,i-1);
         ind(:,i) = ind(:,i-1);
+
+        % L ist der Index des Fahrzeugs mit dem minimalen Abstand zur Ampel
+        [~,L]= min(mod(laenge + ampel - ind(:,i)' - 1,laenge));
     
         % Beschleunigen
         val(:,i) = min(val(:,i)+1,v_max);
