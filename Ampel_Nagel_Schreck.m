@@ -23,6 +23,7 @@ trd = rand(sum(s>=0),iter) <= p_troedel;
 phase = floor(iter - 1/(t_gruen + t_rot));
 rest = mod(iter - 1,(t_gruen + t_rot));
 
+%Gruen_Phase
 for i=1:t_gruen
     
     % Nächste Spalte initialisieren
