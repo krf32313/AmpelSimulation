@@ -28,7 +28,7 @@ laenge_phase = t_gruen + t_rot;
 for i=2:iter
 
     %Gruen_Phase
-    if mod(i,laenge_phase)<= t_gruen
+    if mod(i-1,laenge_phase)+1<= t_gruen
 
         % Nächste Spalte initialisieren
         val(:,i) = val(:,i-1);
