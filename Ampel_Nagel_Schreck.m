@@ -43,7 +43,7 @@ for i=1:t_gruen
     ind(:,i) = mod(ind(:,i-1) + val(:,i) - 1,laenge)+1;
 end
 
-%Rot_Phase
+% Berechnungen für die Rot_Phase
 for i=1:t_rot
     
     L = min(mod(laenge + ampel - ind(:,i) - 1,laenge));
