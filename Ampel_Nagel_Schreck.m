@@ -20,49 +20,68 @@ val(:,1) = s(s(:,1)>=0);  % Übernahme in Geschwindigkeits-Array
 % Array der Trödelfaktoren
 trd = rand(sum(s>=0),iter) <= p_troedel;
 
-phase = floor(iter - 1/(t_gruen + t_rot));
-rest = mod(iter - 1,(t_gruen + t_rot));
+laenge_phase = t_gruen + t_rot;
 
-%Gruen_Phase
-for i=1:t_gruen
-    
-    % Nächste Spalte initialisieren
-    val(:,i) = val(:,i-1);
-    ind(:,i) = ind(:,i-1);
-    
-    % Beschleunigen
-    val(:,i) = min(val(:,i)+1,v_max);
-    
-    % Bremsen
-    val(:,i) = min(val(:,i),mod(laenge+circshift(  ind(:,i),-1) - ind(:,i)- 1  ,laenge));
-    
-    % Trödeln
-    val(:,i) = max(val(:,i) - trd(:,i),0);
-    
-    % Bewegen
-    ind(:,i) = mod(ind(:,i-1) + val(:,i) - 1,laenge)+1;
-end
 
-% Berechnungen für die Rot_Phase
-for i=1:t_rot
+for i=2:iter
     
-    L = min(mod(laenge + ampel - ind(:,i) - 1,laenge));
-    % Nächste Spalte initialisieren
-    val(:,i) = val(:,i-1);
-    ind(:,i) = ind(:,i-1);
+    %Gruen_Phase
+    if mod(i-1,laenge_phase)+1<= t_gruen
+        
+        fprintf('Gruen\n');
+
+        % Nächste Spalte initialisieren
+        val(:,i) = val(:,i-1);
+        ind(:,i) = ind(:,i-1);
     
-    % Beschleunigen
-    val(:,i) = min(val(:,i)+1,v_max);
+        % Beschleunigen
+        val(:,i) = min(val(:,i)+1,v_max);
     
-    % Bremsen
-    val(:,i) = min(val(:,i),mod(laenge+circshift(  ind(:,i),-1) - ind(:,i)- 1  ,laenge));
-    val(L,i) = min(val(:,i),mod(laenge+ ampel - ind(:,i)- 1  ,laenge));
+        % Bremsen
+        val(:,i) = min(val(:,i),mod(laenge+circshift(  ind(:,i),-1) - ind(:,i)- 1  ,laenge));
     
-    % Trödeln
-    val(:,i) = max(val(:,i) - trd(:,i),0);
+        % Trödeln
+        val(:,i) = max(val(:,i) - trd(:,i),0);
     
-    % Bewegen
-    ind(:,i) = mod(ind(:,i-1) + val(:,i) - 1,laenge)+1;
+        % Bewegen
+        ind(:,i) = mod(ind(:,i-1) + val(:,i) - 1,laenge)+1;
+
+    %Rot_Phase
+    else    
+        fprintf('Rot\n');
+
+        % L ist der Index des Fahrzeugs mit dem minimalen Abstand zur Ampel
+        [~,L]= min(mod(laenge + ampel - ind(:,i)' - 1,laenge));
+        % Nächste Spalte initialisieren
+        val(:,i) = val(:,i-1);
+        ind(:,i) = ind(:,i-1);
+    
+        % Beschleunigen
+        val(:,i) = min(val(:,i)+1,v_max);
+        
+        % Bremsen
+        val(:,i) = min(val(:,i),mod(laenge+circshift(  ind(:,i),-1) - ind(:,i)- 1  ,laenge));
+        val(L,i) = val(L,i-1);
+        
+        fprintf('Fahrzeug %d wird Geschwindigkeit %d geändert auf ',L ,val(L,i));
+        val(L,i) = min(val(L,i),mod(laenge+ ampel - ind(L,i)- 1  ,laenge));
+        fprintf('Geschwindigkeit %d in Iteration %i \n',val(L,i),i);
+    
+        %Alternative für Bremsen von L
+        %for j=1:sum(s>0)
+        %    if j ~= L
+        %        val(j,i) = min(val(j,i),mod(laenge+ind(j-1,i) - ind(j,i)- 1  ,laenge));
+        %    else 
+        %        val(L,i) = min(val(L,i),mod(laenge+ ampel - ind(L,i)- 1  ,laenge));
+        %    end
+        %end
+
+        % Trödeln
+        val(:,i) = max(val(:,i) - trd(:,i),0);
+    
+        % Bewegen
+        ind(:,i) = mod(ind(:,i-1) + val(:,i) - 1,laenge)+1;
+    end
 end
 
 end %function

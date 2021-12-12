@@ -22,51 +22,47 @@ trd = rand(sum(s>=0),iter) <= p_troedel;
 
 phase = floor(iter - 1/(t_gruen + t_rot));
 rest = mod(iter - 1,(t_gruen + t_rot));
-laenge_phase = t_gruen + t_rot;
 
+%Gruen_Phase
+for i=1:t_gruen
+    
+    % Nächste Spalte initialisieren
+    val(:,i) = val(:,i-1);
+    ind(:,i) = ind(:,i-1);
+    
+    % Beschleunigen
+    val(:,i) = min(val(:,i)+1,v_max);
+    
+    % Bremsen
+    val(:,i) = min(val(:,i),mod(laenge+circshift(  ind(:,i),-1) - ind(:,i)- 1  ,laenge));
+    
+    % Trödeln
+    val(:,i) = max(val(:,i) - trd(:,i),0);
+    
+    % Bewegen
+    ind(:,i) = mod(ind(:,i-1) + val(:,i) - 1,laenge)+1;
+end
 
-for i=2:iter
-
-    %Gruen_Phase
-    if mod(i-1,laenge_phase)+1<= t_gruen
-
-        % Nächste Spalte initialisieren
-        val(:,i) = val(:,i-1);
-        ind(:,i) = ind(:,i-1);
+% Berechnungen für die Rot_Phase
+for i=1:t_rot
     
-        % Beschleunigen
-        val(:,i) = min(val(:,i)+1,v_max);
+    L = min(mod(laenge + ampel - ind(:,i) - 1,laenge));
+    % Nächste Spalte initialisieren
+    val(:,i) = val(:,i-1);
+    ind(:,i) = ind(:,i-1);
     
-        % Bremsen
-        val(:,i) = min(val(:,i),mod(laenge+circshift(  ind(:,i),-1) - ind(:,i)- 1  ,laenge));
+    % Beschleunigen
+    val(:,i) = min(val(:,i)+1,v_max);
     
-        % Trödeln
-        val(:,i) = max(val(:,i) - trd(:,i),0);
+    % Bremsen
+    val(:,i) = min(val(:,i),mod(laenge+circshift(  ind(:,i),-1) - ind(:,i)- 1  ,laenge));
+    val(L,i) = min(val(:,i),mod(laenge+ ampel - ind(:,i)- 1  ,laenge));
     
-        % Bewegen
-        ind(:,i) = mod(ind(:,i-1) + val(:,i) - 1,laenge)+1;
-
-    %Rot_Phase
-    else    
-        
-        L = min(mod(laenge + ampel - ind(:,i) - 1,laenge));
-        % Nächste Spalte initialisieren
-        val(:,i) = val(:,i-1);
-        ind(:,i) = ind(:,i-1);
+    % Trödeln
+    val(:,i) = max(val(:,i) - trd(:,i),0);
     
-        % Beschleunigen
-        val(:,i) = min(val(:,i)+1,v_max);
-    
-        % Bremsen
-        val(:,i) = min(val(:,i),mod(laenge+circshift(  ind(:,i),-1) - ind(:,i)- 1  ,laenge));
-        val(L,i) = min(val(:,i),mod(laenge+ ampel - ind(:,i)- 1  ,laenge));
-    
-        % Trödeln
-        val(:,i) = max(val(:,i) - trd(:,i),0);
-    
-        % Bewegen
-        ind(:,i) = mod(ind(:,i-1) + val(:,i) - 1,laenge)+1;
-    end
+    % Bewegen
+    ind(:,i) = mod(ind(:,i-1) + val(:,i) - 1,laenge)+1;
 end
 
 end %function
