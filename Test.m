@@ -3,13 +3,13 @@ close;
 clear;
 
 dichte = 0.15; 
-laenge =100; %3000;
-iter = 200; %2000;
+laenge =3000;%100; %
+iter = 2000;%200; 
 v_max = 5;
 p_troedel = 0.2;
-ampel = 50;%1500;
-t_gruen = 20;%120;
-t_rot = 10; %100;
+ampel = 1500;%50;
+t_gruen = 20;%20;
+t_rot = 10; %10;
 
 % Nagel Schreckenberg berechnen
 % Neue Parameter: dichte,laenge,iter,v_max,p_troedel, ampel, t_gruen, t_rot

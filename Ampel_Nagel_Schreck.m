@@ -28,7 +28,7 @@ for i=2:iter
     %Gruen_Phase
     if mod(i-1,laenge_phase)+1<= t_gruen
         
-        fprintf('Gruen\n');
+        %fprintf('Gruen\n');
 
         % Nächste Spalte initialisieren
         val(:,i) = val(:,i-1);
@@ -48,7 +48,7 @@ for i=2:iter
 
     %Rot_Phase
     else    
-        fprintf('Rot\n');
+        %fprintf('Rot\n');
 
         % Nächste Spalte initialisieren
         val(:,i) = val(:,i-1);
@@ -64,9 +64,9 @@ for i=2:iter
         val(:,i) = min(val(:,i),mod(laenge+circshift(  ind(:,i),-1) - ind(:,i)- 1  ,laenge));
         val(L,i) = val(L,i-1);
         
-        fprintf('Fahrzeug %d wird Geschwindigkeit %d geändert auf ',L ,val(L,i));
+        %fprintf('Fahrzeug %d wird Geschwindigkeit %d geändert auf ',L ,val(L,i));
         val(L,i) = min(val(L,i),mod(laenge+ ampel - ind(L,i)- 1  ,laenge));
-        fprintf('Geschwindigkeit %d in Iteration %i \n',val(L,i),i);
+        %fprintf('Geschwindigkeit %d in Iteration %i \n',val(L,i),i);
     
         %Alternative für Bremsen von L
         %for j=1:sum(s>0)
