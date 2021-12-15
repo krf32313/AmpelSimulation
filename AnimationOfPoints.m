@@ -2,6 +2,7 @@
 
 clc; clear; close all;
 
+% Initialisierungswerte
 dichte = 0.15; 
 laenge =200;
 iter = 100;
@@ -15,25 +16,36 @@ t_rot = 20;
 % Neue Parameter: dichte,laenge,iter,v_max,p_troedel, ampel, t_gruen, t_rot
 [ind,val] = Ampel_Nagel_Schreck(dichte, laenge, iter, v_max, p_troedel, ampel, t_gruen, t_rot);
 
-% Create motion data -- (1)
-x = ind; % Position data
+% Bewegungsdaten festlegen
+x = ind; % Position der Autos
 
-% Draw initial figure -- (2)
-figure(1);
-s = [0:0.1:laenge];
+% Initialisierungsbild malen
+% Figure Größe ganzer Bildschirm
+figure('units','normalized','outerposition',[0 0 1 1])
+% Zwei Linien für die Straße plotten
+s = [0:0.1:laenge]; % x Werte für Straße
 m = size(s,2);
-y = ones(m,1).*(laenge/2);
-plot(s,y)
+y1 = ones(m,1).*(laenge/2+5); % y Wert obere Straßenlinie
+y2 = ones(m,1).*(laenge/2-5); % y Wert untere Straßenlinie
+plot(s,y1, 'k')
 hold on
-plot(ampel,laenge/2, 'o', 'MarkerSize' ,10, 'MarkerFaceColor', 'r')
-NumberCars = size(x,1);
+plot(s,y2, 'k')
+hold on
+% Ampel plotten
+plot(ampel,laenge/2, '+', 'MarkerSize' ,22, 'MarkerFaceColor', 'r','LineWidth',4)
 
+% Startpositionen der Autos plotten
+NumberCars = size(x,1);
 yWerte = ones(NumberCars,1)*(laenge/2);
-h = plot(x(:,1), yWerte, 'o', 'MarkerSize' ,5, 'MarkerFaceColor', 'b');
-xlim([0, laenge]);
+h = plot(x(:,1), yWerte, 'o', 'MarkerSize' ,10, 'MarkerFaceColor', 'c');
+
+% Achsen festlegen
+%axis off
+xlim([0, laenge])
 ylim([0, laenge]);
 
-% Animation loop -- (3)
+% Animationsschleife, die pro Iteration die neuen Positionen der Autos
+% plottet
 for i = 1:size(x,2)
         set(h, 'XData', x(:,i));
         drawnow;
