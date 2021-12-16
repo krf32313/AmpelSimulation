@@ -29,6 +29,7 @@ x_max2=1550;
 [B2] = berechneStrasse2(dichte, x_min2, x_max2, laenge2, iter, v_max2, p_troedel2, ampel2, t_gruen_Ampel2, t_rot_Ampel2);
 
 f_max = max(max(B1.mean_Var3), max(B2.mean_Var3));
+v_max = max(v_max1, v_max2);
 
 % und plotten
 f = figure;
