@@ -10,8 +10,6 @@ end
 ind = zeros(sum(s>=0),iter);
 val = zeros(sum(s>=0),iter);
 
-
-
 x = (1:laenge)';          % Generierung aller Indizes
 h = (s(:,1)>=0) .* x;    % Indizes der Fahrzeuge
 ind(:,1) = h(s(:,1)>=0);  % Übernahme in Index-Array
@@ -67,15 +65,6 @@ for i=2:iter
         %fprintf('Fahrzeug %d wird Geschwindigkeit %d geändert auf ',L ,val(L,i));
         val(L,i) = min(val(L,i),mod(laenge+ ampel - ind(L,i)- 1  ,laenge));
         %fprintf('Geschwindigkeit %d in Iteration %i \n',val(L,i),i);
-    
-        %Alternative für Bremsen von L
-        %for j=1:sum(s>0)
-        %    if j ~= L
-        %        val(j,i) = min(val(j,i),mod(laenge+ind(j-1,i) - ind(j,i)- 1  ,laenge));
-        %    else 
-        %        val(L,i) = min(val(L,i),mod(laenge+ ampel - ind(L,i)- 1  ,laenge));
-        %    end
-        %end
 
         % Trödeln
         val(:,i) = max(val(:,i) - trd(:,i),0);

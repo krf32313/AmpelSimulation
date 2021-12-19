@@ -66,3 +66,13 @@ for i=1:t_rot
 end
 
 end %function
+
+
+%Alternative für Bremsen von L
+        %for j=1:sum(s>0)
+        %    if j ~= L
+        %        val(j,i) = min(val(j,i),mod(laenge+ind(j-1,i) - ind(j,i)- 1  ,laenge));
+        %    else 
+        %        val(L,i) = min(val(L,i),mod(laenge+ ampel - ind(L,i)- 1  ,laenge));
+        %    end
+        %end

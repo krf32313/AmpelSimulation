@@ -1,3 +1,8 @@
+% Test ob Grün- und Rotphase richtig ausgewählt wird
+
+clc;
+close;
+clear;
 
 iter = 523;
 t_gruen = 30;

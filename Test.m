@@ -1,15 +1,17 @@
+% Test Scatter Plot einer Ringstraße
+
 clc;
 close;
 clear;
 
 dichte = 0.15; 
-laenge =3000;%100; %
-iter = 2000;%200; 
+laenge =3000;
+iter = 2000;
 v_max = 5;
 p_troedel = 0.2;
-ampel = 1500;%50;
-t_gruen = 20;%20;
-t_rot = 10; %10;
+ampel = 1500;
+t_gruen = 20;
+t_rot = 10;
 
 % Nagel Schreckenberg berechnen
 % Neue Parameter: dichte,laenge,iter,v_max,p_troedel, ampel, t_gruen, t_rot

@@ -1,4 +1,4 @@
-% animation_point.m
+% Animation einer Ringstraße
 
 clc; clear; close all;
 

@@ -1,3 +1,5 @@
+% Durchschnitt Geschwindigkeit/Fluss Diagramm beider Ringstraßen
+
 clc;
 close;
 clear;
@@ -13,7 +15,7 @@ p_troedel2 = 0.2;
 ampel1 = 1500;
 ampel2 = 1500;
 t_gruen_Ampel1 = 120;
-t_gruen_Ampel2 = 10;
+t_gruen_Ampel2 = 20;
 t_rot_Ampel1 = t_gruen_Ampel2;
 t_rot_Ampel2 = t_gruen_Ampel1;
 
@@ -32,10 +34,6 @@ f_max = max(max(B1.mean_Var3), max(B2.mean_Var3));
 v_max = max(v_max1, v_max2);
 
 % und plotten
-f = figure;
-f.Position = [50 50 900 900];
-
-slider = uicontrol('Parent',f,'Style','slider','Position',[150,10,200,23],'value',t_gruen_Ampel1, 'min',20, 'max',120);
 
 subplot(2,2,1);
 plot(B1.Var1,B1.mean_Var2)
@@ -70,7 +68,6 @@ plot(B2.Var1,B2.mean_Var3)
 ylabel("Fluss")
 xlabel("Dichte")
 ylim([0,f_max])
-
 
 
 function [B] = berechneStrasse1(dichte, x_min, x_max, laenge, iter, v_max, p_troedel, ampel, t_gruen_Ampel1, t_rot_Ampel1)

@@ -1,18 +1,19 @@
+% Test Durchschnitt Geschwindigkeit/Fluss Diagramm an einer Ringstraße
+
 clc;
 close;
 clear;
 
 dichte = 0:0.1:1;
-laenge =3000;%100; %
-iter = 2000;%200; 
+laenge =3000;
+iter = 2000;
 v_max = 5;
 p_troedel = 0.2;
-ampel = 1500;%50;
-t_gruen = 120;%20;
-t_rot = 120; %10;
+ampel = 1500;
+t_gruen = 120;
+t_rot = 120;
 
 % Messintervall
-%TODO: Messintervall?
 x_min=1450;
 x_max=1550;
 

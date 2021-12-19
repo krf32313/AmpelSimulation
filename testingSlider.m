@@ -1,3 +1,5 @@
+% Beispiel eines Slider aus der Matlab Dokumentation
+
 clc;
 close;
 clear;
