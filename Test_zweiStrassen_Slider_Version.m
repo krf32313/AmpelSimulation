@@ -92,7 +92,7 @@ f_lokal2=[];
 
 for r = dichte
     %Ringstraße 1
-    [ind1,val1] = Ampel_Nagel_Schreck(r, laenge1, iter, v_max1, p_troedel1, ampel1, t_gruen_Ampel1, t_rot_Ampel1);
+    [ind1,val1] = Starte_gruene_Ampel_Nagel_Schreck(r, laenge1, iter, v_max1, p_troedel1, ampel1, t_gruen_Ampel1, t_rot_Ampel1);
     
     % Messintervall in Daten kennzeichnen
     intervall1 = ind1>=x_min1 & ind1<x_max1;

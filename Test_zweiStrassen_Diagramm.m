@@ -76,7 +76,7 @@ v_lokal=[];
 f_lokal=[];
 
 for r = dichte
-    [ind1,val1] = Ampel_Nagel_Schreck(r, laenge, iter, v_max, p_troedel, ampel, t_gruen_Ampel1, t_rot_Ampel1);
+    [ind1,val1] = Starte_gruene_Ampel_Nagel_Schreck(r, laenge, iter, v_max, p_troedel, ampel, t_gruen_Ampel1, t_rot_Ampel1);
     
     % Messintervall in Daten kennzeichnen
     intervall = ind1>=x_min & ind1<x_max;

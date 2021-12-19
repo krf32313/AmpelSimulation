@@ -15,7 +15,7 @@ t_rot = 10;
 
 % Nagel Schreckenberg berechnen
 % Neue Parameter: dichte,laenge,iter,v_max,p_troedel, ampel, t_gruen, t_rot
-[ind,val] = Ampel_Nagel_Schreck(dichte, laenge, iter, v_max, p_troedel, ampel, t_gruen, t_rot);
+[ind,val] = Starte_gruene_Ampel_Nagel_Schreck(dichte, laenge, iter, v_max, p_troedel, ampel, t_gruen, t_rot);
 
 % Zeiten werden für y-Achse gebraucht
 tim = ones(size(ind,1),1) * (1:iter);

@@ -14,7 +14,7 @@ t_rot = 20;
 
 % Nagel Schreckenberg berechnen
 % Neue Parameter: dichte,laenge,iter,v_max,p_troedel, ampel, t_gruen, t_rot
-[ind,val] = Ampel_Nagel_Schreck(dichte, laenge, iter, v_max, p_troedel, ampel, t_gruen, t_rot);
+[ind,val] = Starte_gruene_Ampel_Nagel_Schreck(dichte, laenge, iter, v_max, p_troedel, ampel, t_gruen, t_rot);
 
 % Bewegungsdaten festlegen
 x = ind; % Position der Autos

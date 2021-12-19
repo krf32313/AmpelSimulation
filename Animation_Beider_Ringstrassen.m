@@ -21,7 +21,7 @@ t_rot_Ampel2 = t_gruen_Ampel1;
 
 % Nagel Schreckenberg beider Ringstraßen berechnen
 % Neue Parameter: dichte,laenge,iter,v_max,p_troedel, ampel, t_gruen, t_rot
-[ind1,val1] = Ampel_Nagel_Schreck(dichte1, laenge1, iter, v_max1, p_troedel1, ampel1, t_gruen_Ampel1, t_rot_Ampel1);
+[ind1,val1] = Starte_gruene_Ampel_Nagel_Schreck(dichte1, laenge1, iter, v_max1, p_troedel1, ampel1, t_gruen_Ampel1, t_rot_Ampel1);
 [ind2,val2] = Starte_rote_Ampel_Nagel_Schreck(dichte2, laenge2, iter, v_max2, p_troedel2, ampel2, t_gruen_Ampel2, t_rot_Ampel2);
 
 % Bewegungsdaten festlegen
