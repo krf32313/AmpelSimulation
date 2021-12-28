@@ -29,23 +29,23 @@ x1 = ind1; % Positionen der Autos auf Ringstrasse 1
 x2 = ind2; % Positionen der Autos auf Ringstrasse 2
 
 % Initialisierungsbild malen
-% figure Groeße ganzer Bildschirm
+% figure Groesse ganzer Bildschirm
 % figure('units','normalized','outerposition',[0 0 1 1])
-% Zwei Linien für die jeweiligen Strassen plotten
-s1 = [0:0.1:laenge1]; % x Werte für Strasse 1
-s2 = [0:0.1:laenge2]; % y Werte für Strasse 2
+% Zwei Linien fuer die jeweiligen Strassen plotten
+s1 = [0:0.1:laenge1]; % x Werte fuer Strasse 1
+s2 = [0:0.1:laenge2]; % y Werte fuer Strasse 2
 m1 = size(s1,2);
 m2 = size(s2,2);
 % Plot der 1. Ringstrasse
-ys1o = ones(m1,1).*(ampel2+5); % y Wert obere Strassenlinie Ringstraße 1
-ys1u = ones(m1,1).*(ampel2-5); % y Wert untere Strassenlinie Ringstraße 1
+ys1o = ones(m1,1).*(ampel2+5); % y Wert obere Strassenlinie Ringstrasse 1
+ys1u = ones(m1,1).*(ampel2-5); % y Wert untere Strassenlinie Ringstrasse 1
 plot(s1,ys1o, 'k')
 hold on
 plot(s1,ys1u, 'k')
 hold on
 % Plot der 2. Ringstrasse
-xs2l = ones(m2,1).*(ampel1+5); % x Wert linke Straßenlinie Ringstrasse 2
-xs2r = ones(m2,1).*(ampel1-5); % x Wert rechte Straßenlinie Ringstrasse 2
+xs2l = ones(m2,1).*(ampel1+5); % x Wert linke Strassenlinie Ringstrasse 2
+xs2r = ones(m2,1).*(ampel1-5); % x Wert rechte Strassenlinie Ringstrasse 2
 plot(xs2l,s2, 'k')
 hold on
 plot(xs2r,s2, 'k')
