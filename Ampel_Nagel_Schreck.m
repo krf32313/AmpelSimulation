@@ -1,4 +1,4 @@
-function [ind, val] = Ampel_Nagel_Schreck(phase, dichte, laenge, iter, v_max, p_troedel, ampel, t_gruen, t_rot)
+function [ind, val] = Ampel_Nagel_Schreck(start_phase, dichte, laenge, iter, v_max, p_troedel, ampel, t_gruen, t_rot)
 
 % Zufälliges Initialisieren mit zufälligen Geschwindigkeiten
 s=-ones(laenge,1);      % Vektor mit -1 (Spalte), Ausmaß von 1 bis laenge
@@ -20,7 +20,7 @@ trd = rand(sum(s>=0),iter) <= p_troedel;
 
 laenge_phase = t_gruen + t_rot;
 
-if phase == "g"
+if start_phase == "g"
 
     for i=2:iter
     
@@ -37,7 +37,7 @@ if phase == "g"
         end
     end
 
-elseif phase == "r"
+elseif start_phase == "r"
 
     for i=2:iter
     
