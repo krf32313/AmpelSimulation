@@ -14,9 +14,8 @@ function [val, ind] = Rote_Phase(val, ind, laenge, v_max, ampel, trd, i)
         val(:,i) = min(val(:,i),mod(laenge+circshift(ind(:,i),-1) - ind(:,i)- 1, laenge));
         val(L,i) = val(L,i-1);
         
-        %fprintf('Fahrzeug %d wird Geschwindigkeit %d geändert auf ',L ,val(L,i));
+        % Bremsen Fahrzeug mit Index L
         val(L,i) = min(val(L,i),mod(laenge + ampel - ind(L,i)- 1, laenge));
-        %fprintf('Geschwindigkeit %d in Iteration %i \n',val(L,i),i);
 
         % Trödeln
         val(:,i) = max(val(:,i) - trd(:,i), 0);
