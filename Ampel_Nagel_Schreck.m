@@ -1,7 +1,7 @@
 function [ind, val] = Ampel_Nagel_Schreck(start_phase, dichte, laenge, iter, v_max, p_troedel, ampel, t_gruen, t_rot)
 
 % Zufälliges Initialisieren mit zufälligen Geschwindigkeiten
-s=-ones(laenge,1);      % Vektor mit -1 (Spalte), Ausmaß von 1 bis laenge
+s=-ones(laenge,1); 
 while(sum(s>=0)/laenge < dichte)
     s(floor(rand()*laenge)+1,1) = floor((v_max+0.99)*rand());
 end
