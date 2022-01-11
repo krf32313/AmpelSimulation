@@ -27,6 +27,7 @@ t_rot_Ampel2 = t_gruen_Ampel1;
 [ind2,val2] = Ampel_Nagel_Schreck("r", dichte2, laenge2, iter, ...
               v_max2, p_troedel2, ampel2, t_gruen_Ampel2, t_rot_Ampel2);
 
+
 % Bewegungsdaten festlegen
 x1 = ind1; % Positionen der Autos auf Ringstrasse 1
 x2 = ind2; % Positionen der Autos auf Ringstrasse 2
@@ -78,6 +79,13 @@ h2 = plot(xWerte, x2(:,1), 'o', 'MarkerSize', 10, ...
 xlim([0, laenge1])
 ylim([0, laenge2]);
 
+
+% Set up the movie
+writerObj = VideoWriter('out.avi');
+writerObj.FrameRate = 10; % How many frames per second.
+open(writerObj); 
+
+
 % Animationsschleife, die pro Iteration die neuen Positionen 
 % der Autos beider Ringstrassen plottet
 for i = 1:iter
@@ -85,7 +93,12 @@ for i = 1:iter
         set(h2, 'YData', x2(:,i));
         drawnow;
         pause(0.1);
+        frame = getframe(gcf); % 'gcf' can handle if you zoom in to take a movie.
+        writeVideo(writerObj, frame);
 end
+
+hold off
+close(writerObj); % Saves the movie.
 
 
 
